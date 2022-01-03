@@ -12,6 +12,8 @@ import com.mygdx.jumphero.managers.GameStateManager;
 import com.mygdx.jumphero.managers.State;
 import com.mygdx.jumphero.renderers.OrthogonalTiledMapRendererBleeding;
 
+import static com.mygdx.jumphero.util.Constants.PPM;
+
 public class GameState extends State {
 
     private final World world;
