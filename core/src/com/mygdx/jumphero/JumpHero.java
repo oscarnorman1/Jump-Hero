@@ -30,8 +30,7 @@ public class JumpHero extends ApplicationAdapter {
 	public void render() {
 		gsm.render(sb);
 
-		if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-			Gdx.app.exit();
+
 	}
 
 	@Override

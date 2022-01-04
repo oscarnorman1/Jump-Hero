@@ -7,9 +7,9 @@ import com.mygdx.jumphero.JumpHero;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.height = 1920;
-		config.width = 1080;
-		config.fullscreen = true;
+		config.height = JumpHero.D_HEIGHT;
+		config.width = JumpHero.D_WIDTH;
+		//config.fullscreen = true;
 		new LwjglApplication(new JumpHero(), config);
 	}
 }
