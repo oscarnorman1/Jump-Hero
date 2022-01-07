@@ -9,7 +9,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.height = JumpHero.D_HEIGHT;
 		config.width = JumpHero.D_WIDTH;
-		//config.fullscreen = true;
+		config.fullscreen = true;
 		new LwjglApplication(new JumpHero(), config);
 	}
 }

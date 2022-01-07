@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.jumphero.managers.GameStateManager;
 
+import static com.mygdx.jumphero.util.Constants.PPM;
+
 public class JumpHero extends ApplicationAdapter {
 
 	public static final int D_WIDTH = 560;
@@ -20,7 +22,7 @@ public class JumpHero extends ApplicationAdapter {
 
 	@Override
 	public void create() {
-		viewport = new FitViewport(D_WIDTH, D_HEIGHT);
+		viewport = new FitViewport(D_WIDTH / PPM, D_HEIGHT / PPM);
 		gsm = new GameStateManager();
 		sb = new SpriteBatch();
 		gsm.push(new GameState(gsm));
@@ -29,8 +31,7 @@ public class JumpHero extends ApplicationAdapter {
 	@Override
 	public void render() {
 		gsm.render(sb);
-
-
+		gsm.update(Gdx.graphics.getDeltaTime());
 	}
 
 	@Override

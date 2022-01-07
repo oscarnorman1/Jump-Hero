@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.*;
 
 import static com.mygdx.jumphero.util.Constants.PPM;
 
-
 public class TiledObjectUtil {
     public static void parseTiledObjectLayer(World world, MapObjects mapObjects) {
         for (MapObject object : mapObjects) {
@@ -33,7 +32,7 @@ public class TiledObjectUtil {
         Vector2[] worldVertices = new Vector2[vertices.length / 2];
 
         for (int i = 0; i < worldVertices.length; i++) {
-            worldVertices[i] = new Vector2(vertices[i * 2], vertices[i * 2 + 1]);
+            worldVertices[i] = new Vector2(vertices[i * 2] / PPM, vertices[i * 2 + 1] / PPM);
         }
         ChainShape cs = new ChainShape();
         cs.createChain(worldVertices);
