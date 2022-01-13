@@ -6,27 +6,33 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.jumphero.util.PlayerInputProccesor;
 
 import static com.mygdx.jumphero.util.Constants.PPM;
 
 public class Player extends Sprite {
 
-    private Vector2 velocity = new Vector2();
     private World world;
     private Texture texture;
     private Body player;
+    private boolean facingRight;
+    private boolean isJumping;
+    private Vector2 movement = new Vector2();
+    private float speed = 100f;
 
     public Player(World world) {
         this.world = world;
         this.texture = new Texture("Player.jpg");
         player = createPlayer();
         setTexture(texture);
+        facingRight = true;
     }
 
     @Override
     public void draw(Batch batch) {
         update(Gdx.graphics.getDeltaTime());
         batch.draw(texture, getX(), getY(), 16.0f / PPM, 16.0f / PPM);
+        player.applyForceToCenter(movement, true);
     }
 
     public Body createPlayer() {
@@ -48,15 +54,55 @@ public class Player extends Sprite {
     }
 
     public void movePlayer(float x, float y) {
+        //player.applyForceToCenter(x ,y, false);
         player.setLinearVelocity(x, y);
     }
 
     public void stopPlayer() {
-        player.setLinearVelocity(0, 0);
+        player.setLinearVelocity(0, -9.8f);
     }
+
+    public void jump() {
+        if (facingRight) {
+            player.setLinearVelocity(3, 10);
+        } else {
+            player.setLinearVelocity(-3, 10);
+        }
+    }
+
+    //<Body>
+
 
     public void update(float dt) {
 
+    }
+
+    public boolean isJumping() {
+        return isJumping;
+    }
+
+    public boolean isFacingRight() {
+        return facingRight;
+    }
+
+    public Vector2 getMovement() {
+        return movement;
+    }
+
+    public void setMovement(Vector2 movement) {
+        this.movement = movement;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setJumping(boolean jumping) {
+        isJumping = jumping;
+    }
+
+    public void setFacingRight(boolean facingRight) {
+        this.facingRight = facingRight;
     }
 
     @Override

@@ -9,7 +9,9 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.height = JumpHero.D_HEIGHT;
 		config.width = JumpHero.D_WIDTH;
-		config.fullscreen = true;
+		config.foregroundFPS = 60;
+		config.backgroundFPS = 60;
+		//config.fullscreen = true;
 		new LwjglApplication(new JumpHero(), config);
 	}
 }

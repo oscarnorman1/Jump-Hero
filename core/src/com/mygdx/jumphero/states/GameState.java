@@ -1,4 +1,4 @@
-package com.mygdx.jumphero;
+package com.mygdx.jumphero.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -11,10 +11,13 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.jumphero.JumpHero;
 import com.mygdx.jumphero.entities.Player;
+import com.mygdx.jumphero.managers.B2dContactListener;
 import com.mygdx.jumphero.managers.GameStateManager;
 import com.mygdx.jumphero.managers.State;
 import com.mygdx.jumphero.renderers.OrthogonalTiledMapRendererBleeding;
+import com.mygdx.jumphero.util.PlayerInputProccesor;
 import com.mygdx.jumphero.util.TiledObjectUtil;
 
 
@@ -31,17 +34,21 @@ public class GameState extends State {
 
     public GameState(GameStateManager gsm) {
         super(gsm);
-        world = new World(new Vector2(0, -9.8f), false);
+        this.world = new World(new Vector2(0, -9.8f), false);
+        this.world.setContactListener(new B2dContactListener(this));
         b2dr = new Box2DDebugRenderer();
         //b2dr.setDrawBodies(false);
-        player = new Player(world);
+        player = new Player(this.world);
+        Gdx.input.setInputProcessor(new PlayerInputProccesor(this.player));
 
         cam.setToOrtho(false, JumpHero.D_WIDTH / PPM, JumpHero.D_HEIGHT / PPM);
 
-        tiledMap = new TmxMapLoader().load("core/assets/Map4.tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRendererBleeding(tiledMap, 1f / PPM);
+        this.tiledMap = new TmxMapLoader().load("core/assets/Map4.tmx");
+        this.tiledMapRenderer = new OrthogonalTiledMapRendererBleeding(tiledMap, 1f / PPM);
 
-        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("collision-layer").getObjects());
+        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("platform").getObjects(), "platform");
+
+        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("walls").getObjects(), "walls");
     }
 
     @Override
@@ -75,14 +82,39 @@ public class GameState extends State {
             }
         sb.end();
 
+        if (!Gdx.input.isKeyPressed(Input.Keys.LEFT)
+                && !Gdx.input.isKeyPressed(Input.Keys.RIGHT)
+                && !player.isJumping()) {
+            player.stopPlayer();
+        }
+
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             dispose();
             Gdx.app.exit();
         }
 
-        if (Gdx.input.isKeyPressed((Input.Keys.RIGHT))) {
-            player.movePlayer(10.0f, 0);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            if (!player.isJumping()) {
+                player.setFacingRight(true);
+                player.movePlayer(7f, 0f);
+            }
         }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            if (!player.isJumping()) {
+                player.setFacingRight(false);
+                player.movePlayer(-7f, 0.f);
+            }
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            if (!player.isJumping()) {
+                player.jump();
+            }
+        }
+
+        //System.out.println(player.isJumping());
+
 
     }
 

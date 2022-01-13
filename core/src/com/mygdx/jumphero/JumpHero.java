@@ -2,11 +2,11 @@ package com.mygdx.jumphero;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.jumphero.managers.GameStateManager;
+import com.mygdx.jumphero.states.GameState;
 
 import static com.mygdx.jumphero.util.Constants.PPM;
 
