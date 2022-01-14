@@ -3,9 +3,10 @@ package com.mygdx.jumphero.util;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
+import com.mygdx.jumphero.entities.Player;
 
 import static com.mygdx.jumphero.util.Constants.PPM;
 
@@ -39,6 +40,17 @@ public class TiledObjectUtil {
         ChainShape cs = new ChainShape();
         cs.createChain(worldVertices);
         return cs;
+    }
+
+    public static void destroyAllBodies(World world) {
+        Array<Body> bodies = new Array<>();
+        world.getBodies(bodies);
+
+        for (Body body : bodies) {
+            if (body.getUserData() instanceof Player)
+                continue;
+            world.destroyBody(body);
+        }
     }
 
 

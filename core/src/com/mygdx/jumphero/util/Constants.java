@@ -2,11 +2,9 @@ package com.mygdx.jumphero.util;
 
 public class Constants {
 
-    //Category bits
-    public static final short BIT_GROUND = 2;
-    public static final short BIT_PLAYER = 4;
-
-
     public static final float PPM = 16f;
+
+    public static final int D_WIDTH = 560;
+    public static final int D_HEIGHT = 320;
 
 }

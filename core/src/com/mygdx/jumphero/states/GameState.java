@@ -17,20 +17,21 @@ import com.mygdx.jumphero.managers.B2dContactListener;
 import com.mygdx.jumphero.managers.GameStateManager;
 import com.mygdx.jumphero.managers.State;
 import com.mygdx.jumphero.renderers.OrthogonalTiledMapRendererBleeding;
+import com.mygdx.jumphero.renderers.StageRenderer;
 import com.mygdx.jumphero.util.PlayerInputProccesor;
 import com.mygdx.jumphero.util.TiledObjectUtil;
 
-
-import static com.mygdx.jumphero.util.Constants.PPM;
+import static com.mygdx.jumphero.util.Constants.*;
 
 public class GameState extends State {
 
     private final World world;
-    private final OrthogonalTiledMapRendererBleeding tiledMapRenderer;
-    private final TiledMap tiledMap;
+/*    private final OrthogonalTiledMapRendererBleeding tiledMapRenderer;
+    private final TiledMap tiledMap;*/
     private Box2DDebugRenderer b2dr;
     private Player player;
     private Array<Body> tmpBodies = new Array<Body>();
+    private StageRenderer stageRenderer;
 
     public GameState(GameStateManager gsm) {
         super(gsm);
@@ -41,13 +42,15 @@ public class GameState extends State {
         player = new Player(this.world);
 
 
-        cam.setToOrtho(false, JumpHero.D_WIDTH / PPM, JumpHero.D_HEIGHT / PPM);
+        cam.setToOrtho(false, D_WIDTH / PPM, D_HEIGHT / PPM);
 
-        this.tiledMap = new TmxMapLoader().load("core/assets/Map4.tmx");
-        this.tiledMapRenderer = new OrthogonalTiledMapRendererBleeding(tiledMap, 1f / PPM);
+/*        this.tiledMap = new TmxMapLoader().load("core/assets/Map4.tmx");
+        this.tiledMapRenderer = new OrthogonalTiledMapRendererBleeding(tiledMap, 1f / PPM);*/
 
-        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("platform").getObjects(), "platform");
-        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("walls").getObjects(), "walls");
+        this.stageRenderer = new StageRenderer(this.world, this.cam, this.player);
+
+/*        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("platform").getObjects(), "platform");
+        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("walls").getObjects(), "walls");*/
         Gdx.input.setInputProcessor(new PlayerInputProccesor(this.player));
     }
 
@@ -65,10 +68,12 @@ public class GameState extends State {
     public void render(SpriteBatch sb) {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        cam.update();
 
         JumpHero.viewport.apply();
-        tiledMapRenderer.setView( (OrthographicCamera) JumpHero.viewport.getCamera());
-        tiledMapRenderer.render();
+/*        tiledMapRenderer.setView( (OrthographicCamera) JumpHero.viewport.getCamera());
+        tiledMapRenderer.render();*/
+        this.stageRenderer.render();
         b2dr.render(world, cam.combined);
         sb.setProjectionMatrix(cam.combined);
 
@@ -117,7 +122,7 @@ public class GameState extends State {
 
     @Override
     public void dispose() {
-        tiledMapRenderer.dispose();
+        //tiledMapRenderer.dispose();
         b2dr.dispose();
         world.dispose();
     }

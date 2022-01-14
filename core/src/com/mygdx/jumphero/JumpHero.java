@@ -8,12 +8,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.jumphero.managers.GameStateManager;
 import com.mygdx.jumphero.states.GameState;
 
-import static com.mygdx.jumphero.util.Constants.PPM;
+import static com.mygdx.jumphero.util.Constants.*;
 
 public class JumpHero extends ApplicationAdapter {
-
-	public static final int D_WIDTH = 560;
-	public static final int D_HEIGHT = 320;
 
 	public static Viewport viewport;
 

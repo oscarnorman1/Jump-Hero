@@ -60,9 +60,9 @@ public class Player extends Sprite {
 
     public void jump() {
         if (facingRight) {
-            player.setLinearVelocity(3, 10);
+            player.setLinearVelocity(5, 7);
         } else {
-            player.setLinearVelocity(-3, 10);
+            player.setLinearVelocity(-5, 7);
         }
         System.out.println("jump");
     }
