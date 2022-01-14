@@ -39,7 +39,7 @@ public class GameState extends State {
         b2dr = new Box2DDebugRenderer();
         //b2dr.setDrawBodies(false);
         player = new Player(this.world);
-        Gdx.input.setInputProcessor(new PlayerInputProccesor(this.player));
+
 
         cam.setToOrtho(false, JumpHero.D_WIDTH / PPM, JumpHero.D_HEIGHT / PPM);
 
@@ -47,8 +47,8 @@ public class GameState extends State {
         this.tiledMapRenderer = new OrthogonalTiledMapRendererBleeding(tiledMap, 1f / PPM);
 
         TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("platform").getObjects(), "platform");
-
         TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("walls").getObjects(), "walls");
+        Gdx.input.setInputProcessor(new PlayerInputProccesor(this.player));
     }
 
     @Override
@@ -112,9 +112,6 @@ public class GameState extends State {
                 player.jump();
             }
         }
-
-        //System.out.println(player.isJumping());
-
 
     }
 

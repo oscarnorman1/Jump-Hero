@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.jumphero.util.PlayerInputProccesor;
 
 import static com.mygdx.jumphero.util.Constants.PPM;
 
@@ -18,7 +17,6 @@ public class Player extends Sprite {
     private boolean facingRight;
     private boolean isJumping;
     private Vector2 movement = new Vector2();
-    private float speed = 100f;
 
     public Player(World world) {
         this.world = world;
@@ -32,14 +30,13 @@ public class Player extends Sprite {
     public void draw(Batch batch) {
         update(Gdx.graphics.getDeltaTime());
         batch.draw(texture, getX(), getY(), 16.0f / PPM, 16.0f / PPM);
-        player.applyForceToCenter(movement, true);
     }
 
     public Body createPlayer() {
         Body pbody;
         BodyDef bdef = new BodyDef();
         bdef.type = BodyDef.BodyType.DynamicBody;
-        bdef.position.set(100.0f / PPM, 50.0f / PPM);
+        bdef.position.set(100.0f / PPM, 25.0f / PPM);
         // JumpHero.D_HEIGHT - (JumpHero.D_HEIGHT - playerWidth - playerWidth / 2f)
         bdef.fixedRotation = true;
         pbody = this.world.createBody(bdef);
@@ -54,7 +51,6 @@ public class Player extends Sprite {
     }
 
     public void movePlayer(float x, float y) {
-        //player.applyForceToCenter(x ,y, false);
         player.setLinearVelocity(x, y);
     }
 
@@ -68,10 +64,8 @@ public class Player extends Sprite {
         } else {
             player.setLinearVelocity(-3, 10);
         }
+        System.out.println("jump");
     }
-
-    //<Body>
-
 
     public void update(float dt) {
 
@@ -83,18 +77,6 @@ public class Player extends Sprite {
 
     public boolean isFacingRight() {
         return facingRight;
-    }
-
-    public Vector2 getMovement() {
-        return movement;
-    }
-
-    public void setMovement(Vector2 movement) {
-        this.movement = movement;
-    }
-
-    public float getSpeed() {
-        return speed;
     }
 
     public void setJumping(boolean jumping) {

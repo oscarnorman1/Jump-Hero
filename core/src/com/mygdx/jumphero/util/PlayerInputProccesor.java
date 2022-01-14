@@ -7,6 +7,8 @@ import com.mygdx.jumphero.entities.Player;
 public class PlayerInputProccesor implements InputProcessor {
 
     private Player player;
+    private Long snapTime;
+    private Long timeElapsed;
 
     public PlayerInputProccesor(Player player) {
         this.player = player;
@@ -14,14 +16,22 @@ public class PlayerInputProccesor implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (keycode == Input.Keys.R) {
-            player.jump();
+        if (keycode == Input.Keys.SPACE) {
+            snapTime = System.currentTimeMillis();
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
+        if (keycode == Input.Keys.SPACE) {
+            player.jump();
+            System.out.println("Time elasped: ");
+            System.out.print((float)(System.currentTimeMillis() - snapTime) / 1000);
+            System.out.println();
+            return true;
+        }
         return false;
     }
 

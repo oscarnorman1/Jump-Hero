@@ -40,11 +40,10 @@ public class B2dContactListener implements ContactListener {
             if (fa.getBody().getUserData() == "platform" || fb.getBody().getUserData() == "platform") {
                 player.setJumping(false);
                 player.stopPlayer();
-                System.out.println("Player is not jumping");
             }
         }
-        System.out.println("FA = " + fa.getBody().getUserData().toString());
-        System.out.println("FB = " + fb.getBody().getUserData().toString());
+/*        System.out.println("FA = " + fa.getBody().getUserData().toString());
+        System.out.println("FB = " + fb.getBody().getUserData().toString());*/
 
     }
 
@@ -72,10 +71,14 @@ public class B2dContactListener implements ContactListener {
         }
 
         if (player != null) {
-            player.setJumping(fa.getBody().getUserData() != "walls" && fb.getBody().getUserData() != "walls");
+            /*player.setJumping(fa.getBody().getUserData() != "walls" && fb.getBody().getUserData() != "walls");*/
+            if (fa.getBody().getUserData() != "walls" && fb.getBody().getUserData() != "walls") {
+                player.setJumping(true);
+            }
         }
-        System.out.println("FA = " + fa.getBody().getUserData().toString());
-        System.out.println("FB = " + fb.getBody().getUserData().toString());
+
+/*        System.out.println("FA = " + fa.getBody().getUserData().toString());
+        System.out.println("FB = " + fb.getBody().getUserData().toString());*/
     }
 
     @Override
