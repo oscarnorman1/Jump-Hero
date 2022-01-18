@@ -1,13 +1,9 @@
 package com.mygdx.jumphero.renderers;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.jumphero.JumpHero;
 import com.mygdx.jumphero.entities.Player;
 import com.mygdx.jumphero.util.TiledObjectUtil;
 

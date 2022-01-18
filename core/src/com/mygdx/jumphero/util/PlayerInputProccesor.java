@@ -8,7 +8,7 @@ public class PlayerInputProccesor implements InputProcessor {
 
     private Player player;
     private Long snapTime;
-    private Long timeElapsed;
+    private float timeElapsed;
 
     public PlayerInputProccesor(Player player) {
         this.player = player;
@@ -26,10 +26,18 @@ public class PlayerInputProccesor implements InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.SPACE) {
-            player.jump();
-            System.out.println("Time elasped: ");
-            System.out.print((float)(System.currentTimeMillis() - snapTime) / 1000);
-            System.out.println();
+            //<
+            //>
+            timeElapsed = (float) (System.currentTimeMillis() - snapTime) / 1000f;
+            if (timeElapsed < 0.5f) {
+                player.jump(5f, 9f);
+            } else if (timeElapsed > 0.5f && timeElapsed < 1f) {
+                player.jump(6f, 12f);
+            } else if(timeElapsed > 1) {
+                player.jump(7f, 15f);
+            }
+
+            System.out.println(timeElapsed);
             return true;
         }
         return false;

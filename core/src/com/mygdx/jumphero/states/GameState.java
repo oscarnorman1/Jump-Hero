@@ -3,11 +3,7 @@ package com.mygdx.jumphero.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
@@ -16,10 +12,8 @@ import com.mygdx.jumphero.entities.Player;
 import com.mygdx.jumphero.managers.B2dContactListener;
 import com.mygdx.jumphero.managers.GameStateManager;
 import com.mygdx.jumphero.managers.State;
-import com.mygdx.jumphero.renderers.OrthogonalTiledMapRendererBleeding;
 import com.mygdx.jumphero.renderers.StageRenderer;
 import com.mygdx.jumphero.util.PlayerInputProccesor;
-import com.mygdx.jumphero.util.TiledObjectUtil;
 
 import static com.mygdx.jumphero.util.Constants.*;
 
@@ -35,7 +29,7 @@ public class GameState extends State {
 
     public GameState(GameStateManager gsm) {
         super(gsm);
-        this.world = new World(new Vector2(0, -9.8f), false);
+        this.world = new World(new Vector2(0, -14f), false);
         this.world.setContactListener(new B2dContactListener(this));
         b2dr = new Box2DDebugRenderer();
         //b2dr.setDrawBodies(false);
@@ -87,11 +81,11 @@ public class GameState extends State {
             }
         sb.end();
 
-        if (!Gdx.input.isKeyPressed(Input.Keys.LEFT)
+/*        if (!Gdx.input.isKeyPressed(Input.Keys.LEFT)
                 && !Gdx.input.isKeyPressed(Input.Keys.RIGHT)
                 && !player.isJumping()) {
             player.stopPlayer();
-        }
+        }*/
 
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             dispose();
@@ -101,22 +95,23 @@ public class GameState extends State {
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             if (!player.isJumping()) {
                 player.setFacingRight(true);
-                player.movePlayer(7f, 0f);
+                player.movePlayer(10f, 0f);
             }
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             if (!player.isJumping()) {
                 player.setFacingRight(false);
-                player.movePlayer(-7f, 0.f);
+                player.movePlayer(-10f, 0.f);
             }
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+/*        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             if (!player.isJumping()) {
+                System.out.println(player.isJumping());
                 player.jump();
             }
-        }
+        }*/
 
     }
 

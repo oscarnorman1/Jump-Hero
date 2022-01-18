@@ -36,7 +36,8 @@ public class Player extends Sprite {
         Body pbody;
         BodyDef bdef = new BodyDef();
         bdef.type = BodyDef.BodyType.DynamicBody;
-        bdef.position.set(100.0f / PPM, 25.0f / PPM);
+        bdef.position.set(70.0f / PPM, 80f / PPM);
+        /*bdef.position.set(100.0f / PPM, 25.0f / PPM);*/
         // JumpHero.D_HEIGHT - (JumpHero.D_HEIGHT - playerWidth - playerWidth / 2f)
         bdef.fixedRotation = true;
         pbody = this.world.createBody(bdef);
@@ -54,17 +55,16 @@ public class Player extends Sprite {
         player.setLinearVelocity(x, y);
     }
 
-    public void stopPlayer() {
+/*    public void stopPlayer() {
         player.setLinearVelocity(0, -9.8f);
-    }
+    }*/
 
-    public void jump() {
+    public void jump(float x, float y) {
         if (facingRight) {
-            player.setLinearVelocity(5, 7);
+            player.setLinearVelocity(x, y);
         } else {
-            player.setLinearVelocity(-5, 7);
+            player.setLinearVelocity(x * -1, y);
         }
-        System.out.println("jump");
     }
 
     public void update(float dt) {
@@ -77,6 +77,10 @@ public class Player extends Sprite {
 
     public boolean isFacingRight() {
         return facingRight;
+    }
+
+    public Body getPlayerBody() {
+        return player;
     }
 
     public void setJumping(boolean jumping) {
