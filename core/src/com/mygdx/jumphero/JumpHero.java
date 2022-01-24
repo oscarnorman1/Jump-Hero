@@ -2,30 +2,42 @@ package com.mygdx.jumphero;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.jumphero.managers.GameStateManager;
+import com.mygdx.jumphero.states.GameState;
 
-public class Game extends ApplicationAdapter {
+import static com.mygdx.jumphero.util.Constants.*;
+
+public class JumpHero extends ApplicationAdapter {
+
+	public static Viewport viewport;
+
+	private GameStateManager gsm;
+	private SpriteBatch sb;
 
 	@Override
 	public void create() {
-
+		viewport = new FitViewport(D_WIDTH / PPM, D_HEIGHT / PPM);
+		gsm = new GameStateManager();
+		sb = new SpriteBatch();
+		gsm.push(new GameState(gsm));
 	}
 
 	@Override
 	public void render() {
-
-
-		if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-			System.exit(0);
-			dispose();
-		}
+		gsm.render(sb);
+		gsm.update(Gdx.graphics.getDeltaTime());
 	}
 
 	@Override
 	public void dispose() {
 
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		viewport.update(width, height, true);
 	}
 }

@@ -34,8 +34,9 @@ public class GameStateManager {
     public void update(float dt){
         states.peek().update(dt);
     }
+
     //Method to render SpriteBatch on the screen .It look at the top of the stack using peek method and
-//then it renders it on the screen
+    //then it renders it on the screen
     public void render (SpriteBatch sb){
         states.peek().render(sb);
     }
