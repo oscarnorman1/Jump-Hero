@@ -40,6 +40,11 @@ public class B2dContactListener implements ContactListener {
             if (fa.getBody().getUserData() == "platform" || fb.getBody().getUserData() == "platform") {
                 player.setJumping(false);
                 player.getPlayerBody().setLinearDamping(20f);
+                System.out.println("touching platform");
+            } else if (fa.getBody().getUserData() != "walls" && fb.getBody().getUserData() != "platform"
+                    || fa.getBody().getUserData() != "platform" && fb.getBody().getUserData() != "walls") {
+
+                System.out.println("Hörn");
             }
         }
 /*        System.out.println("FA = " + fa.getBody().getUserData().toString());
@@ -71,10 +76,10 @@ public class B2dContactListener implements ContactListener {
         }
 
         if (player != null) {
-            /*player.setJumping(fa.getBody().getUserData() != "walls" && fb.getBody().getUserData() != "walls");*/
             if (fa.getBody().getUserData() != "walls" && fb.getBody().getUserData() != "walls") {
                 player.setJumping(true);
                 player.getPlayerBody().setLinearDamping(0);
+                System.out.println("touching walls");
             }
         }
 

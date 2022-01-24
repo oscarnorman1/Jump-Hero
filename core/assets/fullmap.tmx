@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="35" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="23">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="35" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="41">
  <tileset firstgid="1" source="Tilesheet.tsx"/>
  <tileset firstgid="101" source="main_lev_build.tsx"/>
  <layer id="9" name="background-tiles" width="35" height="100">
@@ -526,22 +526,25 @@
   <object id="18" x="32" y="1568">
    <polyline points="0,0 496,0"/>
   </object>
-  <object id="22" x="288" y="1520">
-   <polyline points="0,0 -80,0"/>
+  <object id="33" x="208" y="1520">
+   <polyline points="0,0 80,0"/>
+  </object>
+  <object id="34" x="528" y="1568">
+   <polyline points="0,0 0,-16"/>
   </object>
  </objectgroup>
  <objectgroup id="4" name="walls">
-  <object id="16" x="32" y="1568">
-   <polyline points="0,0 0,-464"/>
-  </object>
-  <object id="17" x="528" y="1104">
-   <polyline points="0,0 0,464"/>
-  </object>
   <object id="19" x="32" y="1488">
    <polyline points="0,0 16,16"/>
   </object>
   <object id="21" x="208" y="1520">
    <polyline points="0,0 0,16 80,16 80,0"/>
+  </object>
+  <object id="37" x="528" y="1552">
+   <polyline points="0,0 0,-448"/>
+  </object>
+  <object id="40" x="32" y="1568">
+   <polyline points="0,0 0,-464"/>
   </object>
  </objectgroup>
 </map>
