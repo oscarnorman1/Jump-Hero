@@ -106,12 +106,9 @@ public class GameState extends State {
             }
         }
 
-/*        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            if (!player.isJumping()) {
-                System.out.println(player.isJumping());
-                player.jump();
-            }
-        }*/
+        if (Gdx.input.isKeyPressed(Input.Keys.R)) {
+            this.gsm.push(new RandomState(this.gsm, this));
+        }
 
     }
 
