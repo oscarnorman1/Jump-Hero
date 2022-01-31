@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="35" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="41">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="35" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="45">
  <tileset firstgid="1" source="Tilesheet.tsx"/>
  <tileset firstgid="101" source="main_lev_build.tsx"/>
  <layer id="9" name="background-tiles" width="35" height="100">
@@ -307,7 +307,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,8692,8694,8697,8699,8697,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,7555,8694,8697,8699,7538,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,9072,9076,9077,9078,9076,9079,9077,9079,9077,9078,9081,9076,9082,9080,9088,9085,9077,9080,9076,9078,9079,9077,9076,9079,9085,9089,9078,9076,9086,9077,9088,9082,9202,0,
@@ -537,14 +537,18 @@
   <object id="19" x="32" y="1488">
    <polyline points="0,0 16,16"/>
   </object>
-  <object id="21" x="208" y="1520">
-   <polyline points="0,0 0,16 80,16 80,0"/>
-  </object>
   <object id="37" x="528" y="1552">
    <polyline points="0,0 0,-448"/>
   </object>
-  <object id="40" x="32" y="1568">
-   <polyline points="0,0 0,-464"/>
+  <object id="41" x="208" y="1520">
+   <polyline points="0,0 16,16 64,16 80,0"/>
+  </object>
+  <object id="42" x="32" y="1552">
+   <polyline points="0,0 0,-80"/>
+  </object>
+  <object id="44" x="32" y="1568">
+   <polyline points="0,0 0,-16"/>
   </object>
  </objectgroup>
+ <objectgroup id="11"/>
 </map>

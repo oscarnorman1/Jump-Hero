@@ -45,7 +45,7 @@ public class GameState extends State {
 
 /*        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("platform").getObjects(), "platform");
         TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("walls").getObjects(), "walls");*/
-        Gdx.input.setInputProcessor(new PlayerInputProccesor(this.player));
+        Gdx.input.setInputProcessor(new PlayerInputProccesor(this.player, this.gsm));
     }
 
     @Override
@@ -56,6 +56,7 @@ public class GameState extends State {
     @Override
     public void update(float dt) {
         world.step(dt, 6, 2);
+        player.update(dt);
     }
 
     @Override
@@ -81,35 +82,9 @@ public class GameState extends State {
             }
         sb.end();
 
-/*        if (!Gdx.input.isKeyPressed(Input.Keys.LEFT)
-                && !Gdx.input.isKeyPressed(Input.Keys.RIGHT)
-                && !player.isJumping()) {
-            player.stopPlayer();
-        }*/
-
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            dispose();
-            Gdx.app.exit();
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            if (!player.isJumping()) {
-                player.setFacingRight(true);
-                player.movePlayer(10f, 0f);
-            }
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            if (!player.isJumping()) {
-                player.setFacingRight(false);
-                player.movePlayer(-10f, 0.f);
-            }
-        }
-
         if (Gdx.input.isKeyPressed(Input.Keys.R)) {
             this.gsm.push(new RandomState(this.gsm, this));
         }
-
     }
 
     @Override

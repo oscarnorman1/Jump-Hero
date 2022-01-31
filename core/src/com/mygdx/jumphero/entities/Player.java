@@ -16,7 +16,7 @@ public class Player extends Sprite {
     private Body player;
     private boolean facingRight;
     private boolean isJumping;
-    private Vector2 movement = new Vector2();
+
 
     public Player(World world) {
         this.world = world;
@@ -55,9 +55,12 @@ public class Player extends Sprite {
         player.setLinearVelocity(x, y);
     }
 
-/*    public void stopPlayer() {
-        player.setLinearVelocity(0, -9.8f);
-    }*/
+
+    public float velocity = 0;
+    public boolean isMoving = false;
+    public void move() {
+        player.setLinearVelocity(velocity, 0);
+    }
 
     public void jump(float x, float y) {
         if (facingRight) {
@@ -68,7 +71,9 @@ public class Player extends Sprite {
     }
 
     public void update(float dt) {
-
+        if (isMoving) {
+            move();
+        }
     }
 
     public boolean isJumping() {
