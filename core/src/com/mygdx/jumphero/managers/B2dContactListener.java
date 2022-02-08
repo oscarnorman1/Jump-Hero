@@ -44,7 +44,7 @@ public class B2dContactListener implements ContactListener {
             } else if (fa.getBody().getUserData() != "walls" && fb.getBody().getUserData() != "platform"
                     || fa.getBody().getUserData() != "platform" && fb.getBody().getUserData() != "walls") {
 
-                System.out.println("hörn");
+                player.setJumping(false);
             }
         }
 /*        System.out.println("FA = " + fa.getBody().getUserData().toString());

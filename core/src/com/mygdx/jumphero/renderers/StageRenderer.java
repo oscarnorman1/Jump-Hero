@@ -15,10 +15,8 @@ public class StageRenderer {
     private TiledMap tiledMap;
     private OrthographicCamera camera;
     private Player player;
-    private World world;
 
     public StageRenderer(World world, OrthographicCamera camera, Player player) {
-        this.world = world;
         this.player = player;
         this.camera = camera;
         this.tiledMap = new TmxMapLoader().load("core/assets/fullmap.tmx");

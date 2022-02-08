@@ -36,7 +36,7 @@ public class PlayerInputProccesor implements InputProcessor {
                 player.setFacingRight(true);
                 /*player.movePlayer(10f, 0f);*/
                 player.isMoving = true;
-                player.velocity = 10;
+                player.velocity = 3;
             }
         }
 
@@ -45,7 +45,7 @@ public class PlayerInputProccesor implements InputProcessor {
                 player.setFacingRight(false);
                 /*player.movePlayer(-10f, 0.f);*/
                 player.isMoving = true;
-                player.velocity = -10;
+                player.velocity = -3;
             }
         }
 
@@ -58,11 +58,11 @@ public class PlayerInputProccesor implements InputProcessor {
 
             timeElapsed = (float) (System.currentTimeMillis() - snapTime) / 1000f;
             if (timeElapsed < 0.5f) {
-                player.jump(5f, 9f);
+                player.jump(3f, 4f);
             } else if (timeElapsed > 0.5f && timeElapsed < 1f) {
-                player.jump(6f, 12f);
+                player.jump(4f, 6f);
             } else if(timeElapsed > 1) {
-                player.jump(7f, 15f);
+                player.jump(5f, 8f);
             }
 
             System.out.println(timeElapsed);

@@ -48,6 +48,7 @@ public class GameState extends State {
         Gdx.input.setInputProcessor(new PlayerInputProccesor(this.player, this.gsm));
     }
 
+
     @Override
     public void handleInput() {
 
@@ -86,6 +87,8 @@ public class GameState extends State {
             this.gsm.push(new RandomState(this.gsm, this));
         }
     }
+
+
 
     @Override
     public void dispose() {

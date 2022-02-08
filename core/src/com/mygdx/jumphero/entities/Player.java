@@ -2,8 +2,10 @@ package com.mygdx.jumphero.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -17,6 +19,10 @@ public class Player extends Sprite {
     private boolean facingRight;
     private boolean isJumping;
 
+    private Animation<TextureRegion> walkAnimation; // Must declare frame type (TextureRegion)
+    private Texture walkSheet;
+
+    private float stateTime;
 
     public Player(World world) {
         this.world = world;
@@ -24,12 +30,37 @@ public class Player extends Sprite {
         player = createPlayer();
         setTexture(texture);
         facingRight = true;
+
+        this.walkSheet = new Texture(Gdx.files.internal("player_animation_sheet.png"));
+
+        TextureRegion[][] tmp = TextureRegion.split(walkSheet,
+                walkSheet.getWidth() / 7,
+                walkSheet.getHeight() / 8);
+
+        TextureRegion[] walkFrames = new TextureRegion[7 * 8];
+        int index = 0;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 7; j++) {
+                walkFrames[index++] = tmp[i][j];
+            }
+        }
+
+        this.walkAnimation = new Animation<TextureRegion>(1f, walkFrames);
+        this.stateTime = 0f;
+
+        // >
+        // <
+
     }
 
     @Override
     public void draw(Batch batch) {
         update(Gdx.graphics.getDeltaTime());
-        batch.draw(texture, getX(), getY(), 16.0f / PPM, 16.0f / PPM);
+
+        this.stateTime += Gdx.graphics.getDeltaTime();
+        TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
+
+        batch.draw(currentFrame, getX(), getY(), 16.0f / PPM, 16.0f / PPM);
     }
 
     public Body createPlayer() {

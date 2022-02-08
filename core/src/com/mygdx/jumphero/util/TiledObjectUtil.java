@@ -25,7 +25,7 @@ public class TiledObjectUtil {
             FixtureDef fdef = new FixtureDef();
             fdef.shape = shape;
             if (userData.equals("walls")) {
-                fdef.friction = 0;
+                fdef.friction = 100;
                 fdef.density = 100;
             }
             bdef.type = BodyDef.BodyType.StaticBody;
