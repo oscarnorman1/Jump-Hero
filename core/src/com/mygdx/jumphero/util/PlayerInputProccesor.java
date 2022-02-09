@@ -34,18 +34,18 @@ public class PlayerInputProccesor implements InputProcessor {
         if (keycode == Input.Keys.RIGHT) {
             if (!player.isJumping()) {
                 player.setFacingRight(true);
-                /*player.movePlayer(10f, 0f);*/
+                /*player.movePlayer(1f);*/
                 player.isMoving = true;
-                player.velocity = 3;
+                player.velocity = 1f;
             }
         }
 
         if (keycode == Input.Keys.LEFT) {
             if (!player.isJumping()) {
                 player.setFacingRight(false);
-                /*player.movePlayer(-10f, 0.f);*/
+                /*player.movePlayer(-1f); */
                 player.isMoving = true;
-                player.velocity = -3;
+                player.velocity = -1f;
             }
         }
 

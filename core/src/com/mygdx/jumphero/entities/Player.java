@@ -34,18 +34,17 @@ public class Player extends Sprite {
         this.walkSheet = new Texture(Gdx.files.internal("player_animation_sheet.png"));
 
         TextureRegion[][] tmp = TextureRegion.split(walkSheet,
-                walkSheet.getWidth() / 7,
+                walkSheet.getWidth() / 8,
                 walkSheet.getHeight() / 8);
 
-        TextureRegion[] walkFrames = new TextureRegion[7 * 8];
+        TextureRegion[] walkFrames = new TextureRegion[8];
         int index = 0;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 7; j++) {
-                walkFrames[index++] = tmp[i][j];
+            for (int j = 0; j < 8; j++) {
+                System.out.println(j);
+                walkFrames[index++] = tmp[1][j];
             }
-        }
 
-        this.walkAnimation = new Animation<TextureRegion>(1f, walkFrames);
+        this.walkAnimation = new Animation<TextureRegion>(0.25f, walkFrames);
         this.stateTime = 0f;
 
         // >
@@ -59,8 +58,7 @@ public class Player extends Sprite {
 
         this.stateTime += Gdx.graphics.getDeltaTime();
         TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
-
-        batch.draw(currentFrame, getX(), getY(), 16.0f / PPM, 16.0f / PPM);
+        batch.draw(currentFrame, getX(), getY(), 1f, 1f);
     }
 
     public Body createPlayer() {
@@ -71,33 +69,37 @@ public class Player extends Sprite {
         /*bdef.position.set(100.0f / PPM, 25.0f / PPM);*/
         // JumpHero.D_HEIGHT - (JumpHero.D_HEIGHT - playerWidth - playerWidth / 2f)
         bdef.fixedRotation = true;
+
         pbody = this.world.createBody(bdef);
         pbody.setUserData(this);
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox((16f / 2f) / PPM, (16f / 2f) / PPM);
+        FixtureDef fdef = new FixtureDef();
+        fdef.shape = shape;
+        fdef.friction = 100f;
 
-        pbody.createFixture(shape, 1.0f);
+        pbody.createFixture(fdef);
         shape.dispose();
         return pbody;
     }
 
-    public void movePlayer(float x, float y) {
-        player.setLinearVelocity(x, y);
+    public void movePlayer(float impulse) {
+        player.applyLinearImpulse(impulse, 0, getX(), getY(), true);
     }
 
 
     public float velocity = 0;
     public boolean isMoving = false;
     public void move() {
-        player.setLinearVelocity(velocity, 0);
+        player.applyLinearImpulse(velocity, 0, getX(), getY(), true);
     }
 
     public void jump(float x, float y) {
-        if (facingRight) {
-            player.setLinearVelocity(x, y);
-        } else {
-            player.setLinearVelocity(x * -1, y);
+        if (facingRight && !isJumping()) {
+            player.applyLinearImpulse(x, y, getX(), getY(), true);
+        } else if (!isJumping){
+            player.applyLinearImpulse(x * -1, y, getX(), getY(), true);
         }
     }
 

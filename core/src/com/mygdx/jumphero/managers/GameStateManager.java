@@ -5,38 +5,35 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.Stack;
 
 public class GameStateManager {
-    //a private Stack object for states
+
     private Stack<State> states;
 
-    //constructor for GameStateManager
     public GameStateManager(){
         states = new Stack<State>();
     }
 
-    //Method push to a new State onto this stack.
+    //Metod för att addera en state till stacken
     public void push(State state){
         states.push(state);
     }
 
-    //This method call returns the object at the top of this stack.
+    //Metod för att ta bort den state som ligger högst upp i stacken
     public void pop(){
         states.pop();
     }
 
-    //New method when we want to pop some state and instantly push a new state
+    //Metod för att byta ut den state som ligger högst upp i stacken med en ny state
     public void set(State state){
         states.pop();
         states.push(state);
-
     }
 
-    //dt is delta time , i.e. change in time between 2 renders
+    //Metod för att kalla på överliggande states update metod
     public void update(float dt){
         states.peek().update(dt);
     }
 
-    //Method to render SpriteBatch on the screen .It look at the top of the stack using peek method and
-    //then it renders it on the screen
+    //Metod för att kalla på överliggande states render metod
     public void render (SpriteBatch sb){
         states.peek().render(sb);
     }
