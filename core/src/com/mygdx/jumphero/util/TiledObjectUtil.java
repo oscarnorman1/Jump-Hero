@@ -25,7 +25,6 @@ public class TiledObjectUtil {
             FixtureDef fdef = new FixtureDef();
             fdef.shape = shape;
             if (userData.equals("walls")) {
-                System.out.println("hejhej");
                 fdef.friction = 100f;
                 fdef.density = 100;
             }

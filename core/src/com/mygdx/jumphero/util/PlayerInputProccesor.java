@@ -34,7 +34,6 @@ public class PlayerInputProccesor implements InputProcessor {
         if (keycode == Input.Keys.RIGHT) {
             if (!player.isJumping()) {
                 player.setFacingRight(true);
-                /*player.movePlayer(1f);*/
                 player.isMoving = true;
                 player.velocity = 1f;
             }
@@ -43,7 +42,6 @@ public class PlayerInputProccesor implements InputProcessor {
         if (keycode == Input.Keys.LEFT) {
             if (!player.isJumping()) {
                 player.setFacingRight(false);
-                /*player.movePlayer(-1f); */
                 player.isMoving = true;
                 player.velocity = -1f;
             }
@@ -72,7 +70,6 @@ public class PlayerInputProccesor implements InputProcessor {
         if (keycode == Input.Keys.RIGHT) {
             if (!player.isJumping()) {
                 player.setFacingRight(true);
-                /*player.movePlayer(10f, 0f);*/
                 player.isMoving = false;
                 player.velocity = 0;
             }
@@ -81,7 +78,6 @@ public class PlayerInputProccesor implements InputProcessor {
         if (keycode == Input.Keys.LEFT) {
             if (!player.isJumping()) {
                 player.setFacingRight(false);
-                /*player.movePlayer(-10f, 0.f);*/
                 player.isMoving = false;
                 player.velocity = 0;
             }
