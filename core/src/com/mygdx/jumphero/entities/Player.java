@@ -41,7 +41,7 @@ public class Player extends Sprite {
         this.stateTime += Gdx.graphics.getDeltaTime();
 
         TextureRegion temp = playerAnimations.getTexureFrame(stateTime, facingRight, isMoving);
-        batch.draw(temp, getBodyX(), getBodyY(), temp.getRegionWidth() / PPM, temp.getRegionHeight() / PPM);
+        //batch.draw(temp, getBodyX(), getBodyY(), temp.getRegionWidth() / PPM, temp.getRegionHeight() / PPM);
 
     }
 

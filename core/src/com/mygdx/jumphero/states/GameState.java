@@ -30,7 +30,7 @@ public class GameState extends State {
         this.world = new World(new Vector2(0, -14f), false);
         this.world.setContactListener(new B2dContactListener(this));
         b2dr = new Box2DDebugRenderer();
-        b2dr.setDrawBodies(false);
+        b2dr.setDrawBodies(true);
         player = new Player(this.world);
 
         cam.setToOrtho(false, D_WIDTH / PPM, D_HEIGHT / PPM);

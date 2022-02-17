@@ -19,29 +19,27 @@ public class StageRenderer {
     public StageRenderer(World world, OrthographicCamera camera, Player player) {
         this.player = player;
         this.camera = camera;
-        this.tiledMap = new TmxMapLoader().load("core/assets/fullmap.tmx");
+        this.tiledMap = new TmxMapLoader().load("core/assets/testmap.tmx");
         this.tiledMapRenderer = new OrthogonalTiledMapRendererBleeding(tiledMap, 1f / PPM);
 
         TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("platform").getObjects(), "platform");
-        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("walls").getObjects(), "walls");
+        /*TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("walls").getObjects(), "walls");
         TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("slope-left").getObjects(), "slope-left");
-        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("slope-right").getObjects(), "slope-right");
+        TiledObjectUtil.parseTiledObjectLayer(world, tiledMap.getLayers().get("slope-right").getObjects(), "slope-right");*/
     }
 
     public void render() {
         if (player.getActualBodyY() > 0 && player.getActualBodyY() < D_HEIGHT / PPM) {
             camera.position.y = (D_HEIGHT / PPM) / 2;
-            System.out.println("fdsa");
             camera.update();
         }
         if (player.getActualBodyY() > D_HEIGHT / PPM) {
             camera.position.y = D_HEIGHT / PPM / 2 + ((D_HEIGHT * 2f) / PPM) / 2;
-            System.out.println("asdf");
             camera.update();
         }
 
         this.tiledMapRenderer.setView(camera);
-        tiledMapRenderer.render();
+        //tiledMapRenderer.render();
     }
 
 }
