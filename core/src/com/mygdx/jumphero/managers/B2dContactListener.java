@@ -40,10 +40,12 @@ public class B2dContactListener implements ContactListener {
             if (fa.getBody().getUserData() == "platform" || fb.getBody().getUserData() == "platform") {
                 player.setJumping(false);
                 player.getPlayerBody().setLinearDamping(20f);
-                System.out.println("player touched platform");
+            } else if (fa.getBody().getUserData() == "slope-left" || fb.getBody().getUserData() == "slope-left") {
+                player.slopeLeftGlide();
+            } else if (fa.getBody().getUserData() == "slope-right" || fb.getBody().getUserData() == "slope-right") {
+                player.slopeRightGlide();
             } else {
                 player.setJumping(true);
-                System.out.println("touching wall?");
             }
 
 /*            else if (fa.getBody().getUserData() != "walls" && fb.getBody().getUserData() != "platform"

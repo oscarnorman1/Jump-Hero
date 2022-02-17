@@ -16,6 +16,8 @@ public class Player extends Sprite {
 
     private World world;
     private Body player;
+    public float velocity = 0;
+    public boolean isMoving = false;
     private boolean facingRight;
     private boolean isJumping;
 
@@ -48,8 +50,6 @@ public class Player extends Sprite {
         BodyDef bdef = new BodyDef();
         bdef.type = BodyDef.BodyType.DynamicBody;
         bdef.position.set(70.0f / PPM, 80f / PPM);
-        /*bdef.position.set(100.0f / PPM, 25.0f / PPM);*/
-        // JumpHero.D_HEIGHT - (JumpHero.D_HEIGHT - playerWidth - playerWidth / 2f)
         bdef.fixedRotation = true;
 
         pbody = this.world.createBody(bdef);
@@ -69,10 +69,6 @@ public class Player extends Sprite {
     public void movePlayer(float impulse) {
         player.applyLinearImpulse(impulse, 0, getBodyX(), getBodyY(), true);
     }
-
-
-    public float velocity = 0;
-    public boolean isMoving = false;
     public void move() {
         player.applyLinearImpulse(velocity, 0, getBodyX(), getBodyY(), true);
     }
@@ -83,6 +79,14 @@ public class Player extends Sprite {
         } else if (!isJumping){
             player.applyLinearImpulse(x * -1, y, getBodyX(), getBodyY(), true);
         }
+    }
+
+    public void slopeLeftGlide() {
+        player.setLinearVelocity(4.0f, 0f);
+    }
+
+    public void slopeRightGlide() {
+        player.setLinearVelocity(-4.0f, 0f);
     }
 
     public void update(float dt) {
@@ -118,4 +122,12 @@ public class Player extends Sprite {
     public float getBodyY() {
         return player.getPosition().y - 25 / PPM;
     }
+
+    public float getActualBodyY() {
+        return player.getPosition().y - 8 / PPM;
+    }
+    public float getActualBodyX() {
+        return player.getPosition().x - 8 / PPM;
+    }
+
 }

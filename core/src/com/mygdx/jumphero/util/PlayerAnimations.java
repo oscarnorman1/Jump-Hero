@@ -20,7 +20,6 @@ public class PlayerAnimations {
         loadRunningRightAnimation();
         loadIdleRightAnimation();
         loadIdleLeftAnimation();
-
     }
 
     public void loadRunningLeftAnimation() {

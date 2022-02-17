@@ -24,10 +24,6 @@ public class TiledObjectUtil {
             BodyDef bdef = new BodyDef();
             FixtureDef fdef = new FixtureDef();
             fdef.shape = shape;
-            if (userData.equals("walls")) {
-                fdef.friction = 100f;
-                fdef.density = 100;
-            }
 
             bdef.type = BodyDef.BodyType.StaticBody;
             body = world.createBody(bdef);
