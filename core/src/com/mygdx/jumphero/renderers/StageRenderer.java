@@ -31,12 +31,10 @@ public class StageRenderer {
     public void render() {
         if (player.getActualBodyY() > 0 && player.getActualBodyY() < D_HEIGHT / PPM) {
             camera.position.y = (D_HEIGHT / PPM) / 2;
-            System.out.println("fdsa");
             camera.update();
         }
         if (player.getActualBodyY() > D_HEIGHT / PPM) {
             camera.position.y = D_HEIGHT / PPM / 2 + ((D_HEIGHT * 2f) / PPM) / 2;
-            System.out.println("asdf");
             camera.update();
         }
 
