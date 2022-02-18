@@ -50,12 +50,9 @@ public class B2dContactListener implements ContactListener {
 
 /*            else if (fa.getBody().getUserData() != "walls" && fb.getBody().getUserData() != "platform"
                     || fa.getBody().getUserData() != "platform" && fb.getBody().getUserData() != "walls") {
-                System.out.println("hejsan");
-
                 player.setJumping(false);
             } else if(fa.getBody().getUserData() == "walls" || fb.getBody().getUserData() == "walls") {
                 player.setJumping(true);
-                System.out.println("touching walls");
             }
         }*/
 /*        System.out.println("FA = " + fa.getBody().getUserData().toString());
