@@ -3,10 +3,13 @@ package com.mygdx.jumphero.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.jumphero.JumpHero;
 import com.mygdx.jumphero.entities.Player;
 import com.mygdx.jumphero.managers.B2dContactListener;
@@ -24,6 +27,9 @@ public class GameState extends State {
     private Player player;
     private Array<Body> tmpBodies = new Array<Body>();
     private StageRenderer stageRenderer;
+
+    private BitmapFont font = new BitmapFont();
+    private long startTime = System.currentTimeMillis();
 
     public GameState(GameStateManager gsm) {
         super(gsm);
@@ -63,6 +69,8 @@ public class GameState extends State {
         b2dr.render(world, cam.combined);
         sb.setProjectionMatrix(cam.combined);
 
+        float elapsedTime = System.currentTimeMillis() - startTime;
+
         sb.begin();
         world.getBodies(tmpBodies);
         for (Body body : tmpBodies)
@@ -71,14 +79,19 @@ public class GameState extends State {
                 player.setPosition(player.getX(), player.getY());
                 player.draw(sb);
             }
+        font.draw(sb, convertFloatTimeToString(elapsedTime), 100 / PPM, 100 / PPM);
         sb.end();
 
         if (Gdx.input.isKeyPressed(Input.Keys.R)) {
             this.gsm.push(new RandomState(this.gsm, this));
         }
+
+
     }
 
-
+    private String convertFloatTimeToString(float time) {
+        return "" + time;
+    }
 
     @Override
     public void dispose() {
